@@ -207,11 +207,12 @@ class _HomepageState extends State<Homepage> {
                 // setState(() {
                 //   isLoading = true;
                 // });
-                print(origin?.position.latitude.toString());
-                print(origin?.position.longitude.toString());
-                print(destination?.position.latitude.toString());
-                print(destination?.position.longitude.toString());
-                calcDistance();
+                // print(origin?.position.latitude.toString());
+                // print(origin?.position.longitude.toString());
+                // print(destination?.position.latitude.toString());
+                // print(destination?.position.longitude.toString());
+                // calcDistance();
+                AuthService().signOut();
                 // AuthService().signOut();
                 //     // setState(() {});
                 //     // _googleMapController
@@ -222,7 +223,7 @@ class _HomepageState extends State<Homepage> {
                 child: Container(
                   padding: EdgeInsets.all(20),
                   child: Text(
-                    "Calculate",
+                    "Sign Out",
                     // isLoading ? "${origin!.position.longitude}" : "0.00",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),

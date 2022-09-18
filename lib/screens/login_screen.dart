@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:verst/LoginService/auth_service.dart';
+import 'package:verst/widgets/sign_up.dart';
 import 'package:verst/widgets/textform_widget.dart';
 
 class LoginSceen extends StatefulWidget {
@@ -227,7 +228,7 @@ class _LoginSceenState extends State<LoginSceen> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-                            Text("Hello 1"),
+                            SignUp()
                           ],
                         ),
                       )
