@@ -3,7 +3,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:verst/LoginService/auth_service.dart';
 import 'package:verst/models/httpmodel.dart';
 import 'package:verst/models/serviceh.dart';
+import 'package:verst/screens/login_screen.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -53,19 +56,6 @@ class _HomepageState extends State<Homepage> {
       });
     }
   }
-  // static Marker _kOrigin = Marker(
-  //   markerId: MarkerId("_kOrigin"),
-  //   infoWindow: InfoWindow(title: "Google Plex"),
-  //   icon: BitmapDescriptor.defaultMarker,
-  //   position: LatLng(37.42796133580664, -122.085749655962),
-  // );
-
-  // static Marker _kDestination = Marker(
-  //   markerId: MarkerId("_kDestination"),
-  //   infoWindow: InfoWindow(title: "Destination"),
-  //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-  //   position: LatLng(37.43296265331129, -122.08832357078792),
-  // );
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -197,27 +187,10 @@ class _HomepageState extends State<Homepage> {
             bottom: 100,
             child: GestureDetector(
               onTap: () {
-                // Calculate().getDirections(
-                //         origin?.position.latitude,
-                //         origin?.position.longitude,
-                //         destination?.position.latitude,
-                //         destination?.position.longitude);
-                // print(origin);
-                // print(destination);
-                // setState(() {
-                //   isLoading = true;
-                // });
-                // print(origin?.position.latitude.toString());
-                // print(origin?.position.longitude.toString());
-                // print(destination?.position.latitude.toString());
-                // print(destination?.position.longitude.toString());
-                // calcDistance();
                 AuthService().signOut();
-                // AuthService().signOut();
-                //     // setState(() {});
-                //     // _googleMapController
-                //     //     ?.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-                //   }, //_goToTheLake,
+                FacebookAuth.instance.logOut().then((value) {
+                  Get.put(LoginSceen());
+                });
               },
               child: Card(
                 child: Container(
@@ -233,30 +206,6 @@ class _HomepageState extends State<Homepage> {
           )
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Calculate().getDirections(
-      //     //     origin?.position.latitude,
-      //     //     origin?.position.longitude,
-      //     //     destination?.position.latitude,
-      //     //     destination?.position.longitude);
-      //     // print(origin);
-      //     // print(destination);
-      //     // setState(() {
-      //     //   isLoading = true;
-      //     // });
-      //     print(origin?.position.latitude.toString());
-      //     print(origin?.position.longitude.toString());
-      //     print(destination?.position.latitude.toString());
-      //     print(destination?.position.longitude.toString());
-      //     calcDistance();
-      //     // AuthService().signOut();
-      //     // setState(() {});
-      //     // _googleMapController
-      //     //     ?.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-      //   }, //_goToTheLake,
-      //   child: Icon(Icons.gps_fixed),
-      // ),
     );
   }
 
@@ -273,6 +222,7 @@ class _HomepageState extends State<Homepage> {
         );
         //Lets reset the destination
         destination = null;
+        //We reset the isLoading variable once a new origin has been set
         isLoading = false;
       });
     } else {
@@ -285,7 +235,7 @@ class _HomepageState extends State<Homepage> {
           position: pos,
         );
       });
-      // calcDistance();
+      calcDistance();
     }
   }
 }

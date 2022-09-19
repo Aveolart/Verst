@@ -1,15 +1,24 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:verst/LoginService/auth_service.dart';
 import 'package:verst/widgets/textform_widget.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
   Widget build(BuildContext context) {
+    bool isLoggedIn = false;
+    Map userObj = {};
+
     final formkey = GlobalKey<FormState>();
     return Form(
       key: formkey,
@@ -104,7 +113,23 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  FacebookAuth.instance
+                      .login(permissions: ["public_profile", "email"]).then(
+                    (value) => {
+                      FacebookAuth.instance.getUserData().then(
+                        (userData) async {
+                          setState(
+                            () {
+                              isLoggedIn = true;
+                              userObj = userData;
+                            },
+                          );
+                        },
+                      )
+                    },
+                  );
+                },
                 child: FaIcon(
                   FontAwesomeIcons.facebook,
                   color: Color(0xFF006DE6),

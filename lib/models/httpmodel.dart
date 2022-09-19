@@ -2,7 +2,7 @@
 //
 //     final distance = distanceFromJson(jsonString);
 
-// ignore_for_file: prefer_if_null_operators
+// ignore_for_file: prefer_if_null_operators, prefer_null_aware_operators
 
 import 'dart:convert';
 
@@ -374,9 +374,9 @@ class Polyline {
       };
 }
 
-enum TravelMode { DRIVING }
+enum TravelMode { driving }
 
-final travelModeValues = EnumValues({"DRIVING": TravelMode.DRIVING});
+final travelModeValues = EnumValues({"DRIVING": TravelMode.driving});
 
 class EnumValues<T> {
   Map<String, T> map;
@@ -385,9 +385,7 @@ class EnumValues<T> {
   EnumValues(this.map);
 
   Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
+    reverseMap ??= map.map((k, v) => MapEntry(v, k));
     return reverseMap!;
   }
 }

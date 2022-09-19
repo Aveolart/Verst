@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Verst</string>
+    <string name="facebook_app_id">428063366107199</string>
+    <string name="fb_login_protocol_scheme">fb428063366107199</string>
+    <string name="facebook_client_token">a446c450fb039a1c6a64e5899c11ba26</string>
+</resources>

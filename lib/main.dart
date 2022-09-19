@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:verst/LoginService/auth_service.dart';
-import 'package:verst/screens/homepage.dart';
-import 'package:verst/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

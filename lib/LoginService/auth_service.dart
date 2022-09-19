@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constru, prefer_const_constructors
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:verst/screens/homepage.dart';
 import 'package:verst/screens/login_screen.dart';
